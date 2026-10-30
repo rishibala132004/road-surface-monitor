@@ -1,0 +1,348 @@
+/* Map overlays, markers and MapLibre control restyling. */
+.maplibregl-ctrl-scale {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-2);
+  background: var(--surface-veil);
+  border: 1px solid var(--line-strong);
+  border-top: 0;
+}
+
+.maplibregl-ctrl-attrib {
+  font-family: var(--font-text);
+  font-size: 10px;
+  background: var(--surface-veil) !important;
+  color: var(--ink-3);
+}
+
+.maplibregl-ctrl-attrib a {
+  color: var(--ink-2);
+}
+
+.maplibregl-ctrl-bottom-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.maplibregl-ctrl-bottom-right .maplibregl-ctrl {
+  margin: 0 var(--space-3) var(--space-2) 0;
+}
+
+.maplibregl-popup-content {
+  font-family: var(--font-text);
+  font-size: var(--text-xs);
+  background: var(--surface-strong);
+  color: var(--ink);
+  box-shadow: var(--shadow-1);
+  border-radius: var(--radius-sm);
+  padding: 4px 8px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.maplibregl-popup-tip {
+  border-top-color: var(--surface-strong) !important;
+  border-bottom-color: var(--surface-strong) !important;
+}
+
+.ride-popup-label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--c);
+}
+
+/* Bike marker: dot with a heading arrow, a pulse in the condition colour, a tag. */
+.bike-marker {
+  position: relative;
+  width: 0;
+  height: 0;
+  --bike: var(--accent);
+  --cond: var(--cond-smooth);
+}
+
+.bike-marker-dot {
+  position: absolute;
+  left: -13px;
+  top: -13px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--bike);
+  box-shadow:
+    0 0 0 3px var(--map-halo),
+    var(--shadow-1);
+  display: grid;
+  place-items: center;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.bike-marker.is-selected .bike-marker-dot {
+  transform: scale(1.15);
+}
+
+.bike-marker-arrow {
+  width: 18px;
+  height: 18px;
+  color: var(--map-halo);
+  transition: transform var(--dur-slow) linear;
+}
+
+.bike-marker-arrow svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.bike-marker-pulse {
+  position: absolute;
+  left: -13px;
+  top: -13px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid var(--cond);
+  animation: marker-pulse 2.2s var(--ease-out) infinite;
+}
+
+.bike-marker.is-stopped .bike-marker-pulse {
+  animation-duration: 4s;
+}
+
+@keyframes marker-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+.bike-marker-tag {
+  position: absolute;
+  left: 18px;
+  top: -8px;
+  color: var(--ink);
+  background: var(--surface-veil);
+  padding: 1px 5px;
+  border-radius: var(--radius-xs);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity var(--dur-base);
+}
+
+.bike-marker:hover .bike-marker-tag,
+.bike-marker.is-selected .bike-marker-tag {
+  opacity: 1;
+}
+
+.bump-ripple {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 3px solid var(--cond);
+  animation: ripple 1.2s var(--ease-out) forwards;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.4);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(5);
+    opacity: 0;
+  }
+}
+
+.ghost-marker {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px dashed var(--ink);
+  background: var(--surface-veil);
+}
+
+/* Overlays on the map. */
+.map-overlays {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto 1fr auto;
+  padding: var(--space-3);
+  gap: var(--space-3);
+}
+
+.place-card {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: start;
+  align-self: start;
+  max-width: 24rem;
+  padding: var(--space-2) var(--space-3);
+  background: var(--surface-veil);
+  backdrop-filter: blur(6px);
+  box-shadow: var(--shadow-1);
+  border-left: 3px solid var(--accent);
+}
+
+.place-card .place-street {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+}
+
+.place-card .place-area {
+  color: var(--ink-3);
+  font-size: var(--text-sm);
+}
+
+.place-card .place-coords {
+  margin-top: 2px;
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+}
+
+.place-card .place-gps {
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+
+.place-card .place-gps[data-quality='poor'] {
+  color: var(--warn);
+}
+
+.map-tools {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  justify-self: end;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.map-tools .btn {
+  background: var(--surface-veil);
+  backdrop-filter: blur(6px);
+  border-radius: 0;
+  width: 2.3rem;
+  height: 2.3rem;
+}
+
+.map-tools .btn:first-child {
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+
+.map-tools .btn:last-child {
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+}
+
+.map-tools .btn[aria-pressed='true'] {
+  background: var(--accent);
+}
+
+.map-tools .sep {
+  height: 6px;
+}
+
+.map-footer {
+  grid-column: 1 / span 2;
+  grid-row: 3;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-3);
+  pointer-events: none;
+}
+
+.map-footer > * {
+  pointer-events: auto;
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--space-2) var(--space-3);
+  background: var(--surface-veil);
+  backdrop-filter: blur(6px);
+  box-shadow: var(--shadow-1);
+  min-width: 11rem;
+}
+
+.legend-row {
+  display: grid;
+  grid-template-columns: 1.6rem 1fr auto;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.legend-row .legend-share {
+  color: var(--ink-3);
+}
+
+.cursor-coords {
+  font-size: var(--text-xs);
+  color: var(--ink-2);
+  background: var(--surface-veil);
+  padding: 2px 8px;
+  margin-bottom: 2px;
+}
+
+.notice-banner {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: center;
+  align-self: start;
+  padding: var(--space-2) var(--space-4);
+  background: var(--danger);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: var(--shadow-2);
+}
+
+.notice-banner[data-kind='info'] {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.notice-banner[data-kind='warn'] {
+  background: var(--warn);
+}
+
+.map-style-note {
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: center;
+  align-self: end;
+  color: var(--ink-3);
+  font-size: var(--text-sm);
+  background: var(--surface-veil);
+  padding: var(--space-1) var(--space-3);
+}
+
+@media (max-width: 900px) {
+  .place-card {
+    max-width: 60vw;
+  }
+
+  .place-card .place-street {
+    font-size: var(--text-lg);
+  }
+
+  .legend {
+    display: none;
+  }
+}
