@@ -1,0 +1,372 @@
+/* The right rail: condition, cyclist, readings, summary, other bikes, area report. */
+.rail-section {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--line);
+}
+
+.rail-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--space-2);
+}
+
+.source-note {
+  color: var(--ink-3);
+}
+
+/* Current condition */
+.cond-section {
+  padding-top: var(--space-4);
+}
+
+.cond-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.cond-label {
+  font-size: var(--text-3xl);
+  text-transform: uppercase;
+  color: var(--c, var(--ink));
+  transition: color var(--dur-base) var(--ease-out);
+}
+
+.cond-label.is-low {
+  opacity: 0.55;
+}
+
+.cond-label.is-low::after {
+  content: ' ?';
+  font-size: 0.5em;
+  vertical-align: top;
+  opacity: 0.8;
+}
+
+.cond-hint {
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+  margin-top: var(--space-1);
+}
+
+.cond-raw {
+  color: var(--warn);
+  font-size: var(--text-xs);
+}
+
+.ring-wrap {
+  position: relative;
+  width: 4.6rem;
+  height: 4.6rem;
+}
+
+.ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.ring-track {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 4;
+}
+
+.ring-value {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 4;
+  stroke-linecap: butt;
+  transition:
+    stroke-dashoffset var(--dur-slow) var(--ease-out),
+    stroke var(--dur-base);
+}
+
+.ring-text {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: var(--text-md);
+  font-weight: 500;
+}
+
+/* Class probabilities */
+.probs {
+  margin-top: var(--space-3);
+  display: grid;
+  gap: 3px;
+}
+
+.probs.is-empty {
+  opacity: 0.4;
+}
+
+.prob-row {
+  display: grid;
+  grid-template-columns: 4.2rem 1fr 2.6rem;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+
+.prob-row.is-top {
+  color: var(--ink);
+}
+
+.prob-bar {
+  height: 6px;
+  background: var(--bg);
+  box-shadow: var(--edge);
+  position: relative;
+  overflow: hidden;
+}
+
+.prob-bar-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  background: var(--c);
+  transition: width var(--dur-slow) var(--ease-out);
+}
+
+.prob-row[data-label='rough'] .prob-bar-fill {
+  background: repeating-linear-gradient(135deg, var(--c) 0 3px, transparent 3px 5px), var(--c);
+  background-blend-mode: normal;
+}
+
+.prob-value {
+  text-align: right;
+}
+
+/* Scene */
+.scene-section {
+  padding: 0;
+  background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
+}
+
+/* Readings */
+.readings {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2) var(--space-4);
+}
+
+.reading-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-1);
+}
+
+.reading-value {
+  font-size: var(--text-xl);
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.reading-unit {
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+
+.roller {
+  display: inline-block;
+}
+
+.roller.is-ticking {
+  animation: tick var(--dur-base) var(--ease-out);
+}
+
+@keyframes tick {
+  from {
+    transform: translateY(4px);
+    opacity: 0.35;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* Summary */
+.summary {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2) var(--space-4);
+}
+
+.summary-item {
+  display: grid;
+}
+
+.summary-value {
+  font-size: var(--text-lg);
+}
+
+.comfort {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px dashed var(--line);
+  cursor: help;
+}
+
+.comfort-head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comfort-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.comfort-value {
+  font-size: var(--text-2xl);
+  min-width: 2.6rem;
+}
+
+.comfort-bar {
+  height: 10px;
+  background: var(--bg);
+  box-shadow: var(--edge);
+  position: relative;
+}
+
+.comfort-bar-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  transition:
+    width var(--dur-slow) var(--ease-out),
+    background var(--dur-slow);
+}
+
+.elevation {
+  margin-top: var(--space-3);
+}
+
+.elevation-canvas {
+  width: 100%;
+  height: 3.2rem;
+  display: block;
+  margin-top: var(--space-1);
+}
+
+/* Small multiples */
+.multiples {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+  gap: var(--space-2);
+}
+
+.multiple {
+  display: block;
+  text-align: left;
+  background: var(--bg);
+  box-shadow: var(--edge);
+  padding: 0 0 var(--space-1);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border-top: 3px solid var(--bike);
+}
+
+.multiple:hover {
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.multiple-stats {
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  padding: 0 var(--space-2);
+  white-space: pre;
+}
+
+/* Area report */
+.streets {
+  display: grid;
+  gap: 2px;
+}
+
+.street {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'name score'
+    'strip strip'
+    'meta meta';
+  gap: 2px var(--space-2);
+  padding: var(--space-2);
+  text-align: left;
+  border-radius: var(--radius-xs);
+  background: transparent;
+  transition: background var(--dur-fast);
+}
+
+.street:hover,
+.street.is-active {
+  background: var(--accent-soft);
+}
+
+.street-name {
+  grid-area: name;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-md);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.street-score {
+  grid-area: score;
+  font-size: var(--text-md);
+  font-weight: 500;
+}
+
+.street-strip {
+  grid-area: strip;
+  display: flex;
+  height: 7px;
+  gap: 1px;
+}
+
+.street-strip i {
+  flex: 1;
+  background: var(--c);
+}
+
+.street-strip i[data-label='rough'] {
+  background:
+    repeating-linear-gradient(135deg, var(--c) 0 2px, transparent 2px 4px),
+    color-mix(in srgb, var(--c) 35%, transparent);
+}
+
+.street-strip i[data-label='stopped'] {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px var(--c);
+}
+
+.street-strip i[data-label='bump'] {
+  background: var(--c);
+  transform: scaleY(1.6);
+}
+
+.street-meta {
+  grid-area: meta;
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+
+.report-empty {
+  color: var(--ink-3);
+  font-size: var(--text-sm);
+}
+
+.report-tools {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
