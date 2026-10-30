@@ -1,0 +1,119 @@
+/* The animated cyclist scene. */
+.cyclist {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 320 / 190;
+  overflow: hidden;
+  --bike: var(--accent);
+  --cond: var(--cond-smooth);
+}
+
+.cyclist-sky,
+.cyclist-road,
+.cyclist-svg {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  display: block;
+}
+
+.cyclist-sky {
+  top: 0;
+  height: 62%;
+}
+
+.cyclist-svg {
+  top: 0;
+  height: 100%;
+}
+
+.cyclist-road {
+  bottom: 0;
+  height: 15.8%;
+}
+
+.cyclist-state {
+  position: absolute;
+  right: var(--space-2);
+  top: var(--space-2);
+  color: var(--ink-3);
+}
+
+.cyclist-tyre {
+  stroke: var(--ink);
+}
+
+.cyclist-rim,
+.cyclist-spoke {
+  stroke: var(--ink-3);
+}
+
+.cyclist-hub {
+  fill: var(--ink);
+}
+
+.cyclist-frame {
+  stroke: var(--bike);
+}
+
+.cyclist-saddle,
+.cyclist-crank,
+.cyclist-chainring {
+  stroke: var(--ink);
+}
+
+.cyclist-chainring {
+  fill: var(--surface);
+}
+
+.cyclist-torso {
+  stroke: var(--ink-2);
+}
+
+.cyclist-arm,
+.cyclist-leg-near {
+  stroke: var(--ink-2);
+}
+
+.cyclist-leg-far {
+  stroke: var(--ink-3);
+  opacity: 0.6;
+}
+
+.cyclist-foot {
+  fill: var(--ink);
+}
+
+.cyclist-head {
+  fill: var(--ink-2);
+}
+
+.cyclist-helmet {
+  stroke: var(--cond);
+  transition: stroke var(--dur-slow) var(--ease-out);
+}
+
+.cyclist-impact {
+  fill: var(--cond-bump);
+}
+
+.cyclist.is-compact .cyclist-state {
+  font-size: 0.6rem;
+}
+
+/* Reduced motion: a still icon and a text state. */
+.cyclist.is-reduced .cyclist-sky,
+.cyclist.is-reduced .cyclist-road {
+  display: none;
+}
+
+.cyclist.is-reduced .cyclist-svg {
+  opacity: 0.85;
+}
+
+.cyclist.is-reduced .cyclist-state {
+  font-size: var(--text-md);
+  color: var(--ink);
+  background: var(--surface-veil);
+  padding: 2px 8px;
+}
