@@ -1,0 +1,178 @@
+/*
+ * Design tokens. Every colour, font, spacing step, radius, duration and
+ * easing curve used by the app is defined here, once for light and once
+ * for dark. Components only ever reference these custom properties.
+ *
+ * The dark set is applied either by the system preference (when the
+ * theme is "system") or by data-theme="dark" on <html>.
+ */
+
+:root {
+  /* Typefaces. Self-hosted through @fontsource; fallbacks keep the
+     hierarchy readable when the webfonts are not loaded. */
+  --font-display:
+    'Saira Condensed', 'Arial Narrow', 'Roboto Condensed', 'Helvetica Neue', sans-serif;
+  --font-text: 'Public Sans', system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Type scale (rem). Presentation mode multiplies the root size. */
+  --text-xs: 0.6875rem;
+  --text-sm: 0.8125rem;
+  --text-md: 0.9375rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2.25rem;
+  --text-3xl: 3.5rem;
+  --text-4xl: 5rem;
+  --tracking-caps: 0.08em;
+
+  /* Spacing (px-based rem steps). */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+
+  /* Radii: deliberately small. Only overlays and pills are rounded. */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-pill: 999px;
+
+  /* Motion. */
+  --dur-fast: 120ms;
+  --dur-base: 220ms;
+  --dur-slow: 480ms;
+  --dur-intro: 2400ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --motion-scale: 1; /* 0 to 1, driven by the "animation intensity" setting */
+
+  /* Layout. */
+  --rail-width: 23rem;
+  --timeline-height: 11.5rem;
+  --header-height: 3.25rem;
+  --z-map: 0;
+  --z-overlay: 10;
+  --z-rail: 20;
+  --z-drawer: 40;
+  --z-toast: 50;
+  --z-intro: 60;
+
+  /* Light palette: cool neutrals, one accent, a semantic set for road
+     conditions. Condition colours are colourblind-safe and are always
+     paired with a pattern and a text label in the UI. */
+  --bg: #e9edf1;
+  --bg-sunken: #dfe4ea;
+  --surface: #f7f9fb;
+  --surface-strong: #ffffff;
+  --surface-veil: rgba(247, 249, 251, 0.86);
+  --line: #c9d1da;
+  --line-strong: #9aa7b5;
+  --ink: #111a24;
+  --ink-2: #3b4857;
+  --ink-3: #6b7786;
+  --ink-inverse: #f3f6f9;
+
+  --accent: #1f6fe0;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(31, 111, 224, 0.12);
+  --accent-line: rgba(31, 111, 224, 0.45);
+
+  --ok: #1f8a5c;
+  --warn: #b86e00;
+  --danger: #c0392b;
+
+  --cond-smooth: #118a6a;
+  --cond-rough: #d08700;
+  --cond-bump: #b4318c;
+  --cond-stopped: #7b8797;
+  --cond-unknown: #4c5a6a;
+  --cond-smooth-soft: rgba(17, 138, 106, 0.16);
+  --cond-rough-soft: rgba(208, 135, 0, 0.18);
+  --cond-bump-soft: rgba(180, 49, 140, 0.16);
+  --cond-stopped-soft: rgba(123, 135, 151, 0.18);
+
+  --bike-1: #1f6fe0;
+  --bike-2: #e0671f;
+  --bike-3: #5f3dc4;
+  --bike-4: #0b8a8a;
+
+  --map-casing: rgba(17, 26, 36, 0.35);
+  --map-halo: rgba(255, 255, 255, 0.9);
+  --shadow-1: 0 1px 2px rgba(17, 26, 36, 0.08), 0 6px 18px rgba(17, 26, 36, 0.08);
+  --shadow-2: 0 2px 6px rgba(17, 26, 36, 0.12), 0 18px 40px rgba(17, 26, 36, 0.14);
+  --edge: inset 0 0 0 1px var(--line);
+  --focus-ring: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent);
+
+  color-scheme: light;
+}
+
+/* Dark palette. Tuned separately: accents lifted for contrast, shadows
+   become light edges, condition colours brightened. */
+:root[data-theme='dark'] {
+  --bg: #0c1218;
+  --bg-sunken: #070b0f;
+  --surface: #131b23;
+  --surface-strong: #19232d;
+  --surface-veil: rgba(19, 27, 35, 0.84);
+  --line: #27333f;
+  --line-strong: #3f4e5d;
+  --ink: #e8edf2;
+  --ink-2: #b4bfca;
+  --ink-3: #7f8c99;
+  --ink-inverse: #0c1218;
+
+  --accent: #6ea4ff;
+  --accent-ink: #061126;
+  --accent-soft: rgba(110, 164, 255, 0.16);
+  --accent-line: rgba(110, 164, 255, 0.5);
+
+  --ok: #3fc088;
+  --warn: #f0a93a;
+  --danger: #f06a5c;
+
+  --cond-smooth: #35c79a;
+  --cond-rough: #f2b134;
+  --cond-bump: #ea6fc4;
+  --cond-stopped: #8c99a9;
+  --cond-unknown: #b2bdc9;
+  --cond-smooth-soft: rgba(53, 199, 154, 0.18);
+  --cond-rough-soft: rgba(242, 177, 52, 0.18);
+  --cond-bump-soft: rgba(234, 111, 196, 0.18);
+  --cond-stopped-soft: rgba(140, 153, 169, 0.18);
+
+  --bike-1: #6ea4ff;
+  --bike-2: #ff9b5c;
+  --bike-3: #b197fc;
+  --bike-4: #3fd0d0;
+
+  --map-casing: rgba(0, 0, 0, 0.6);
+  --map-halo: rgba(12, 18, 24, 0.85);
+  --shadow-1: 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --shadow-2: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 20px 50px rgba(0, 0, 0, 0.5);
+  --edge: inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+  --focus-ring: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent);
+
+  color-scheme: dark;
+}
+
+/* Presentation mode: larger root size, stronger contrast, simpler chrome. */
+:root[data-presentation='true'] {
+  font-size: 20px;
+  --rail-width: 26rem;
+  --timeline-height: 10rem;
+  --surface-veil: var(--surface);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-slow: 0ms;
+    --dur-intro: 0ms;
+  }
+}

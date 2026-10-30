@@ -1,0 +1,102 @@
+/*
+ * Page layout: a header, the map as the stage, a rail on the right and a
+ * timeline along the bottom. Below 900px the rail and timeline stack under
+ * the map and the page scrolls.
+ */
+.app {
+  height: 100%;
+  display: grid;
+  grid-template-rows: var(--header-height) minmax(0, 1fr);
+  transition: opacity var(--dur-slow) var(--ease-in-out);
+}
+
+.app.is-switching {
+  opacity: 0.15;
+}
+
+.stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--rail-width);
+  grid-template-rows: minmax(0, 1fr) var(--timeline-height);
+  grid-template-areas:
+    'map rail'
+    'timeline rail';
+  min-height: 0;
+}
+
+.map {
+  grid-area: map;
+  position: relative;
+  background: var(--bg-sunken);
+}
+
+.map-overlays {
+  grid-area: map;
+  position: relative;
+  pointer-events: none;
+  z-index: var(--z-overlay);
+}
+
+.map-overlays > * {
+  pointer-events: auto;
+}
+
+.rail {
+  grid-area: rail;
+  z-index: var(--z-rail);
+  background: var(--surface);
+  border-left: 1px solid var(--line);
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline {
+  grid-area: timeline;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  position: relative;
+  min-height: 0;
+}
+
+/* Presentation mode hides secondary chrome. */
+:root[data-presentation='true'] .rail .rail-section.is-secondary {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  html {
+    font-size: 14px;
+  }
+
+  body {
+    overflow: auto;
+  }
+
+  .app {
+    height: auto;
+    min-height: 100%;
+    grid-template-rows: auto auto;
+  }
+
+  .stage {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 58vh auto auto;
+    grid-template-areas:
+      'map'
+      'timeline'
+      'rail';
+  }
+
+  .rail {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    overflow: visible;
+  }
+
+  .timeline {
+    height: var(--timeline-height);
+  }
+}

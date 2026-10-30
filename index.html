@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="Live road surface dashboard for a bicycle-mounted classifier. University of Twente IoT course project."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#e9edf1" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1218" media="(prefers-color-scheme: dark)" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='9' cy='22' r='6' fill='none' stroke='%231f6fe0' stroke-width='3'/%3E%3Ccircle cx='23' cy='22' r='6' fill='none' stroke='%231f6fe0' stroke-width='3'/%3E%3Cpath d='M9 22 L15 11 L23 22 M15 11 L20 11' fill='none' stroke='%23111a24' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E"
+    />
+    <title>Road Surface Monitor</title>
+  </head>
+  <body>
+    <div id="app" class="app" data-source="simulated">
+      <header class="topbar" id="topbar"></header>
+      <main class="stage">
+        <div id="map" class="map" role="region" aria-label="Live map"></div>
+        <div id="map-overlays" class="map-overlays"></div>
+        <aside id="rail" class="rail" aria-label="Live readouts"></aside>
+        <section id="timeline" class="timeline" aria-label="Ride timeline"></section>
+      </main>
+      <div id="drawers"></div>
+      <div id="toasts" class="toasts" aria-live="polite"></div>
+      <div id="intro"></div>
+    </div>
+    <noscript>This dashboard needs JavaScript.</noscript>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
