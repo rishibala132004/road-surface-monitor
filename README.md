@@ -2,7 +2,7 @@
 
 A live dashboard for a bicycle-mounted road surface classifier. A Nordic Thingy:52 on the bike streams accelerometer data over Bluetooth Low Energy to a Raspberry Pi 5, which runs a classifier trained in Edge Impulse and publishes one label per window (smooth, rough, bump or stopped) with a confidence over MQTT. A phone on the rider supplies GPS through the OwnTracks app and a hotspot. HiveMQ Cloud carries the messages, and this dashboard, a static web page with no backend, subscribes over secure WebSockets and draws the ride on a map as it happens.
 
-The dashboard starts in a simulation (a ride from the University of Twente campus to the Oude Markt along real streets) so there is always something on screen, switches to live data by itself when the first real classification arrives, can replay recorded logs, and exports what it has seen. It was built for the {{COURSE_NAME}} and is shown live on 6 November 2026.
+The dashboard starts in a simulation (a ride from the University of Twente campus to the Oude Markt along real streets) so there is always something on screen, switches to live data by itself when the first real classification arrives, can replay recorded logs, and exports what it has seen. It was built for the IoT course, University of Twente and is shown live on 6 November 2026.
 
 ![Cyclist and map](docs/images/cyclist-and-map.gif)
 
@@ -51,7 +51,7 @@ npm run lint       # ESLint and Prettier
 
 ## Hosted version
 
-The dashboard is published with GitHub Pages at `https://<org>.github.io/<repo>/` from [{{GITHUB_REPO_URL}}]({{GITHUB_REPO_URL}}). One-time setting after the first push to `main`: repository Settings, Pages, set the source to "GitHub Actions". The workflow in `.github/workflows/pages.yml` builds with the repository name as the base path.
+The dashboard is published with GitHub Pages at `https://rishibala132004.github.io/road-surface-monitor/` from [https://github.com/rishibala132004/road-surface-monitor](https://github.com/rishibala132004/road-surface-monitor). One-time setting after the first push to `main`: repository Settings, Pages, set the source to "GitHub Actions". The workflow in `.github/workflows/pages.yml` builds with the repository name as the base path.
 
 ## Connecting real data
 
@@ -102,4 +102,4 @@ The dashboard is published with GitHub Pages at `https://<org>.github.io/<repo>/
 
 MIT, see [LICENSE](LICENSE). Map data from OpenStreetMap contributors, map styles by CARTO, street names from Nominatim, routing for the simulator route from the FOSSGIS OSRM server.
 
-{{TEAM_MEMBERS}}, {{COURSE_NAME}}
+Rishi Bala S, Adarsh Nanjaiya Latha and team, IoT course, University of Twente

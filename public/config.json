@@ -1,8 +1,8 @@
 {
   "title": "Road Surface Monitor",
-  "team": ["Member A", "Member B", "Member C", "Member D"],
+  "team": ["Rishi Bala S", "Adarsh Nanjaiya Latha", "Member C", "Member D"],
   "course": "IoT course, University of Twente",
-  "repoUrl": "https://github.com/<org>/<repo>",
+  "repoUrl": "https://github.com/rishibala132004/road-surface-monitor",
   "theme": "system",
   "accent": "",
   "motion": 1,

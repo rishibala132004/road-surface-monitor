@@ -69,7 +69,7 @@ On a narrow screen (under 900 px) the layout stacks: the map on top, then the ti
 
 ## 2. Running it
 
-The hosted version is at `https://<org>.github.io/<repo>/` (built from [{{GITHUB_REPO_URL}}]({{GITHUB_REPO_URL}}) on every push to `main`). Nothing needs installing to use it.
+The hosted version is at `https://rishibala132004.github.io/road-surface-monitor/` (built from [https://github.com/rishibala132004/road-surface-monitor](https://github.com/rishibala132004/road-surface-monitor) on every push to `main`). Nothing needs installing to use it.
 
 To run it locally:
 

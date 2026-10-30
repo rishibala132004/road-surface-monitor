@@ -5,7 +5,7 @@
   "description": "Live dashboard for a bicycle-mounted road surface classifier (University of Twente IoT course project)",
   "type": "module",
   "license": "MIT",
-  "author": "{{TEAM_MEMBERS}}",
+  "author": "Rishi Bala S, Adarsh Nanjaiya Latha and team",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
