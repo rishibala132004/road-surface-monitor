@@ -1,0 +1,8 @@
+dist
+node_modules
+public/sim/route.geojson
+public/samples
+docs/images
+publisher
+package-lock.json
+CHANGELOG.md
