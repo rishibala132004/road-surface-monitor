@@ -102,4 +102,4 @@ The dashboard is published with GitHub Pages at `https://rishibala132004.github.
 
 MIT, see [LICENSE](LICENSE). Map data from OpenStreetMap contributors, map styles by CARTO, street names from Nominatim, routing for the simulator route from the FOSSGIS OSRM server.
 
-Rishi Bala S, Adarsh Nanjaiya Latha and team, IoT course, University of Twente
+Rishi Bala S,Hari Sahar Ravikumar, Lathika Rakshini, Vicotor,  IoT course, University of Twente
